@@ -13,6 +13,7 @@ import java.util.List;
 
 @RequestMapping
 @RestController
+@CrossOrigin
 public class UserController {
 
     @Autowired
@@ -23,13 +24,14 @@ public class UserController {
 
     @GetMapping("/condition")
     public List<User> findUsers(String firstName, String lastName){
-        return userRepository.findByFirstNameLikeOrLastNameStartsWith("%a%", "z");
+        return userRepository.findByFirstNameLikeOrLastNameStartsWith("%e%", "z");
     }
 
     @GetMapping("/users")
     public List<User> findAllUsers(){
         return userRepository.findAll();
     }
+
 
     @GetMapping("/isOvercrowded/{hostel}")
     public Boolean isHostelOverCrowded(@PathVariable("hostel") HostelType hostel){
