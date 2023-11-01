@@ -1,8 +1,11 @@
 package com.example.thaparconnect.Bootstrap;
 
+import com.example.thaparconnect.core.entities.Items;
 import com.example.thaparconnect.core.entities.User;
 import com.example.thaparconnect.core.enums.HostelType;
+import com.example.thaparconnect.core.enums.ItemCategory;
 import com.example.thaparconnect.core.enums.UserType;
+import com.example.thaparconnect.core.repositories.ItemsRepository;
 import com.example.thaparconnect.core.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +20,7 @@ import java.util.UUID;
 public class Bootstrap implements CommandLineRunner {
 
     private UserRepository userRepository;
+    private ItemsRepository ItemsRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -49,5 +53,20 @@ public class Bootstrap implements CommandLineRunner {
                 .type(UserType.USER)
                 .build();
         userRepository.saveAll(List.of(user1,user2,user3,user4));
+
+        Items item1 = Items.builder()
+                .name("cooler")
+                .description("only a year old")
+                .itemCategory(ItemCategory.electronics)
+                .price(3500L)
+                .build();
+        Items item2 = Items.builder()
+                .name("kettle")
+                .description("good for cooking maggi")
+                .itemCategory(ItemCategory.electronics)
+                .price(1000L)
+                .build();
+        ItemsRepository.saveAll(List.of(item1,item2));
+
     }
 }
