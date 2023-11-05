@@ -6,12 +6,12 @@ import com.example.thaparconnect.core.entities.User;
 import com.example.thaparconnect.core.enums.HostelType;
 import com.example.thaparconnect.core.repositories.UserRepository;
 import com.example.thaparconnect.core.repositories.ItemsRepository;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping
 @RestController
@@ -37,6 +37,7 @@ public class UserController {
     }
 
 
+
     @GetMapping("/isOvercrowded/{hostel}")
     public Boolean isHostelOverCrowded(@PathVariable("hostel") HostelType hostel){
         return userService.isHotelOverCrowded(hostel);
@@ -46,5 +47,13 @@ public class UserController {
     public List<Items> findAllItems() {
         return ItemsRepository.findAll();
     }
+
+
+
+    @PostMapping("/login")
+    public ResponseEntity<Map<String, String>> login(@RequestBody User loginRequest){
+        return userService.login(loginRequest);
+    }
+
 
 }

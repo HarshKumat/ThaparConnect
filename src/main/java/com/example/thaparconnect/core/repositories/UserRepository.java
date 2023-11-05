@@ -13,6 +13,8 @@ import java.util.UUID;
 public interface UserRepository extends JpaRepository<User, UUID> {
     List<User> findByFirstNameLikeOrLastNameStartsWith(String firstName, String lastName);
 
+    List<User> findByEmail(String email);
+
     Integer countByHostelIn(List<HostelType> hostels);
 
 }

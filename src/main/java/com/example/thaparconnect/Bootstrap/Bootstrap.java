@@ -26,6 +26,7 @@ public class Bootstrap implements CommandLineRunner {
     public void run(String... args) throws Exception {
         User user1 = User.builder()
                 .email("piggy.power@gmail.com")
+                .password("piggy123$")
                 .firstName("piggy")
                 .lastName("power")
                 .hostel(HostelType.A)
@@ -33,6 +34,7 @@ public class Bootstrap implements CommandLineRunner {
                 .build();
         User user2 = User.builder()
                 .email("red.ranger@gmail.com")
+                .password("red123$")
                 .firstName("red")
                 .lastName("ranger")
                 .hostel(HostelType.B)
@@ -40,6 +42,7 @@ public class Bootstrap implements CommandLineRunner {
                 .build();
         User user3 = User.builder()
                 .email("pink.ranger@gmail.com")
+                .password("pink123$")
                 .firstName("pink")
                 .lastName("ranger")
                 .hostel(HostelType.C)
@@ -47,6 +50,7 @@ public class Bootstrap implements CommandLineRunner {
                 .build();
         User user4 = User.builder()
                 .email("green.ranger@gmail.com")
+                .password("green123$")
                 .firstName("green")
                 .lastName("ranger")
                 .hostel(HostelType.A)
@@ -66,7 +70,13 @@ public class Bootstrap implements CommandLineRunner {
                 .itemCategory(ItemCategory.electronics)
                 .price(1000L)
                 .build();
-        ItemsRepository.saveAll(List.of(item1,item2));
+        Items item3 = Items.builder()
+                .name("extension")
+                .description("4 sockets")
+                .itemCategory(ItemCategory.electronics)
+                .price(500L)
+                .build();
+        ItemsRepository.saveAll(List.of(item1,item2,item3));
 
     }
 }

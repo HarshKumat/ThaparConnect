@@ -21,5 +21,5 @@ public class Favourites {
     private UUID customerId;
     private UUID itemId;
     @Enumerated(EnumType.STRING)
-    private ItemStatus status;
+    private ItemStatus status; //transaction initiated, transc finalised
 }
