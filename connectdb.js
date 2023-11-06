@@ -2,7 +2,7 @@
 const hostelType = 'A'; // Replace with the actual hostel type you want to check
 
 // Construct the URL with the specific hostel parameter
-const apiUrl = 'http://localhost:8080/items';
+const apiUrl = `http://localhost:8080/items`;
 
   fetch(apiUrl)
   .then(response => response.json())
@@ -23,9 +23,9 @@ const apiUrl = 'http://localhost:8080/items';
   })
   .catch(error => console.error('Error fetching data: ', error));
 
-
+/*
 //to show user info
-const apiUrl3 = 'http://localhost:8080/details';
+const apiUrl3 = 'http://localhost:8080/user';
 
 
 fetch(apiUrl3)
@@ -46,7 +46,7 @@ fetch(apiUrl3)
     });
 })
 .catch(error => console.error('Error fetching data: ', error));
-
+*/
 
 
   //to confirm login
@@ -61,7 +61,7 @@ fetch(apiUrl3)
         const password = loginForm.elements.password.value;
 
         // Make an HTTP POST request to your Spring Boot backend
-        const apiUrl2 = 'http://localhost:8080/login'; // Replace with your login endpoint
+        const apiUrl2 = `http://localhost:8080/login`; // Replace with your login endpoint
         const requestBody = JSON.stringify({ email, password });
 
         try {
@@ -75,8 +75,10 @@ fetch(apiUrl3)
 
             if (response.ok) {
                 // Successfully logged in
-                const email = loginForm.elements.email.value;
-                sessionStorage.setItem('userEmail',email)
+                console.log('login done');
+                const e = loginForm.elements.email.value;
+                sessionStorage.setItem('userEmail',e)
+                //console.log(userEmail);
                 window.location.href = 'main.html'; // Redirect to the dashboard page
             } else {
                 // Show an error message (e.g., incorrect username or password)
@@ -89,3 +91,22 @@ fetch(apiUrl3)
         }
     });
 });
+
+const email2 = sessionStorage.getItem('userEmail');
+//const email = 'green.ranger@gmail.com'; // Retrieve email from the session storage
+const person = `http://localhost:8080/user/${email2}`;
+
+fetch(person)
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    // Process the data and create HTML elements to display the user information
+    const personDetails = document.getElementById('personDetails');
+    personDetails.className = 'display';
+    personDetails.innerHTML = `
+      <h4>First name: ${data[0].firstName}</h4><br>
+      <h4>Email: ${data[0].email}</h4><br>
+    `;
+  })
+  .catch(error => console.error('Error fetching data: ', error));
+
