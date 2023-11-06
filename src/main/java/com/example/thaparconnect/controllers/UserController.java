@@ -54,7 +54,7 @@ public class UserController {
     public ResponseEntity<Map<String, String>> login(@RequestBody User loginRequest){
         return userService.login(loginRequest);
     }
-
+/*
     @GetMapping("/user/{email}")
     public ResponseEntity<User> getUserByEmail(@PathVariable("email") String email){
         User user = (User) userRepository.findByEmail(email);
@@ -64,6 +64,8 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
-
+*/
+    @GetMapping("/user/{email}")
+    public List<User> findByEmail(@PathVariable("email") String email) { return userRepository.findByEmail(email);}
 
 }
