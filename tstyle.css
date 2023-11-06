@@ -1,0 +1,103 @@
+body {
+  margin: 0%;
+  padding: 0%;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #002f34;
+}
+
+/*-------login and registration------------*/
+#bodylogin {
+  display: flex;
+  justify-content: center;
+  background-color: #03363c;
+}
+
+#box {
+  justify-content: center;
+  margin-top: 5%;
+  width: 690px;
+  height: 530px;
+  background-color: white;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 20px;
+}
+#boxr {
+  justify-content: center;
+  margin-top: 5%;
+  width: 690px;
+  height: 590px;
+  background-color: white;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 20px;
+}
+
+#logoImg {
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  height: 17%;
+}
+
+#heading h3 {
+  color: #033338d3;
+  text-align: center;
+  font-size: 35px !important;
+  font-weight: bold !important;
+  margin-top: 2%;
+}
+
+#heading p {
+  color: #033338d3;
+  text-align: center;
+  font-size: 15px;
+  margin-top: -4%;
+}
+
+#opt {
+  justify-content: center;
+display:flex;
+}
+form .login1 {
+  margin: auto 50px;
+  justify-content: center;
+}
+/*input
+{
+   height:20px;
+   width: 150px;
+   border-radius: 5px;
+   background-color: white;
+  border: 2px solid #002f34;
+}
+*/
+
+.login1 input:hover {
+  border-color: rgb(10, 131, 140);
+}
+form .button{
+
+  width: 500px;;
+   height:30px;
+  border-radius: 5px;
+  margin-top: 5%;
+  background-color: #033338d3;
+  color: white;
+  padding-top: 0.3vh !important;
+}
+form .heading{
+color: black;
+ font-size: 15px
+}
+
+#text {
+  font-size: 20px;
+  margin: auto 7%;
+  margin-top: -2%;
+}
+
+
+
+/*--acc details -----------------------------*/
