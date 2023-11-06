@@ -55,5 +55,15 @@ public class UserController {
         return userService.login(loginRequest);
     }
 
+    @GetMapping("/user/{email}")
+    public ResponseEntity<User> getUserByEmail(@PathVariable("email") String email){
+        User user = (User) userRepository.findByEmail(email);
+        if(user!=null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
 }
