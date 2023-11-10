@@ -97,7 +97,33 @@ function loadfun() {
 function sell() {
   location.href = "sell.html";
 }
+function thanku() {
+  location.href = "thanku.html";
+}
 
 function forSell() {
   alert("SignIn Required to post your product ads");
 }
+//For calculating total price in favourite.html file:-
+// Sample cart items with prices
+const cartItems = [
+  { name: 'Speaker', price: 340 },
+  { name: 'Gift', price: 290 },
+  { name: 'Shoes', price: 300 },
+];
+
+// Function to calculate and update the total price
+function updateTotalPrice() {
+  const totalAmountElement = document.getElementById('total-amount');
+  let totalPrice = 0;
+
+  for (const item of cartItems) {
+    totalPrice += item.price;
+  }
+
+  // Update the total price on the page
+  totalAmountElement.textContent = totalPrice.toFixed(2); // Format to two decimal places
+}
+
+// Call the functions to initially display cart items and update total price
+updateTotalPrice();

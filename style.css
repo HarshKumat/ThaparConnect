@@ -1,5 +1,5 @@
 body {
-  margin: 0%;
+  margin-left:125%;
   padding: 0%;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
@@ -9,8 +9,10 @@ body {
 /*============== NavBar============== */
 .header {
   background-color: #f7f8f9;
-  box-shadow: 0 0 0px grey;
+  padding: 20px;
   position: sticky;
+  margin-left: 250px;
+  width:100px;
   top: 0%;
   z-index: 1;
 }
@@ -38,22 +40,31 @@ body {
 .search_box i {
   background-color: #002f34;
   color: white;
-  border-radius: 0 6px 6px 0;
+  border-radius: 0px 6px 6px 0px;
   cursor: pointer;
   height: 50px;
-  width: 55px;
-  padding: 18px 0px 0px 17px;
+  width: 175px;
+  padding: 36px 0px 0px 17px;
 
 }
 
 .searchclass {
-  width: 100%;
+  width: 300%;
   height: 50px;
   padding: 10px;
   font-size: 16px;
   border: 2px solid #002f34;
   border-radius: 6px 0px 0px 6px;
 }
+.searchclass1 {
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #002f34;
+  border-radius: 6px 6px 6px 6px;
+}
+
 
 .login {
   margin: 15px auto;
@@ -74,7 +85,7 @@ body {
   height: 50px;
   width: 100px;
   margin-top: 5px;
-  margin-left: 15px;
+  margin-left: 30px;
   /* border: 2px solid black; */
 }
 
@@ -273,6 +284,12 @@ body {
   color: rgba(3, 51, 56, 0.827);
   text-align: center;
   font-size: 5vh !important;
+  font-weight: bold !important;
+  margin-top: 2%;
+}
+#heading h4 {
+  color: rgba(3, 51, 56, 0.827);
+  font-size: 3vh !important;
   font-weight: bold !important;
   margin-top: 2%;
 }
@@ -1105,4 +1122,44 @@ td:last-child {
 .ads {
   width: 75%;
   /* Make sure the form takes the full width of the container */
+}
+
+/* Style the sidebar - fixed full height */
+.sidebar {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 16px;
+}
+
+/* Style sidebar links */
+.sidebar a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  z-index:2;
+}
+
+/* Style links on mouse-over */
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+/* Style the main content */
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  padding: 0px 10px;
+}
+
+/* Add media queries for small screens (when the height of the screen is less than 450px, add a smaller padding and font-size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
 }
