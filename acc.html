@@ -67,10 +67,28 @@
         font-size: 14px;
     }
 
+    #productList{}
     #list1{
       padding: 10px;
       margin: 10px;
     }
+
+    #personDetails
+    {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 35%;
+        display: inline-block;
+        width: 50%;
+        height: 500px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    #form1{
+        margin: 5%;
+    }
+  
 </style>
 
 
@@ -128,7 +146,32 @@
 
     </div>
   </nav>
-  <div id="box">
+  
+  <div id="personDetails"></div>
+    <!--
+    <div id="modifyDetails">
+        <form id ="form1">
+            <h4>Enter first name</h4>
+            <input placeholder="change first name" type="text"><br><br>
+            <h4>Enter last name</h4>
+            <input placeholder="change last name" type="text"><br><br>
+            <h4>Enter email</h4>
+            <input placeholder="change email" type="text"><br><br>
+            <h4>Enter email</h4>
+            <input placeholder="change email" type="text"><br><br>
+            <h4>Enter hostel type</h4>
+            <input placeholder="change hostel" type="text"><br><br>
+        </form>
+    </div>
+-->
+<div>
+    <h1>User Information</h1>
+    <p><strong>first name:</strong> <span id="userName"></span></p>
+    <p><strong>Email:</strong> <span id="uEmail"></span></p>
+    <!-- Add more fields as needed -->
+</div>
+  
+  <!--<div id="box">
     <div id="heading">
       <h3>WELCOME TO THAPAR CONNECT</h3><br><br>
       <p>The trusted community of buyers and sellers.</p>
@@ -141,8 +184,9 @@
         
 
     </div>
-  </div>
-<!--
+  </div>-->
+
+  <!--
   <div class="container">
     <div class="product">
         <img src="product1.jpg" alt="Product 1">
