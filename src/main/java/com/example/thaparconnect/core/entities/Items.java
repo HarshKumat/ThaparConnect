@@ -1,10 +1,11 @@
 package com.example.thaparconnect.core.entities;
 
 import com.example.thaparconnect.core.enums.ItemCategory;
+import com.example.thaparconnect.core.enums.ItemStatus;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -22,7 +23,9 @@ public class Items {
     private String description;
     private String imageUrl;
     private Long price;
-    private UUID customerId;
+    private int customerId;
     @Enumerated(EnumType.STRING)
     private ItemCategory itemCategory;
+    @Enumerated(EnumType.STRING)
+    private ItemStatus status;
 }

@@ -1,10 +1,13 @@
 package com.example.thaparconnect.Bootstrap;
 
+import com.example.thaparconnect.core.entities.Favourites;
 import com.example.thaparconnect.core.entities.Items;
 import com.example.thaparconnect.core.entities.User;
 import com.example.thaparconnect.core.enums.HostelType;
 import com.example.thaparconnect.core.enums.ItemCategory;
+import com.example.thaparconnect.core.enums.ItemStatus;
 import com.example.thaparconnect.core.enums.UserType;
+import com.example.thaparconnect.core.repositories.FavouritesRepository;
 import com.example.thaparconnect.core.repositories.ItemsRepository;
 import com.example.thaparconnect.core.repositories.UserRepository;
 import lombok.AllArgsConstructor;
@@ -19,8 +22,10 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Bootstrap implements CommandLineRunner {
 
-    private UserRepository userRepository;
-    private ItemsRepository ItemsRepository;
+    private final UserRepository userRepository;
+    private final ItemsRepository ItemsRepository;
+
+    private final FavouritesRepository favouritesRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -63,20 +68,42 @@ public class Bootstrap implements CommandLineRunner {
                 .description("only a year old")
                 .itemCategory(ItemCategory.electronics)
                 .price(3500L)
+                .customerId(user1.getId())
+                .status(ItemStatus.LISTED)
                 .build();
         Items item2 = Items.builder()
                 .name("kettle")
                 .description("good for cooking maggi")
                 .itemCategory(ItemCategory.electronics)
                 .price(1000L)
+                .customerId(user3.getId())
+                .status(ItemStatus.PROCESSING)
                 .build();
         Items item3 = Items.builder()
                 .name("extension")
                 .description("4 sockets")
                 .itemCategory(ItemCategory.electronics)
                 .price(500L)
+                .customerId(user2.getId())
+                .status(ItemStatus.LISTED)
                 .build();
         ItemsRepository.saveAll(List.of(item1,item2,item3));
 
+        Favourites favourite1 = Favourites.builder()
+                .itemId(item1.getId())
+                .customerId(user4.getId())
+                .build();
+
+        Favourites favourite2 = Favourites.builder()
+                .itemId(item2.getId())
+                .customerId(user4.getId())
+                .build();
+
+        Favourites favourite3 = Favourites.builder()
+                .itemId(item1.getId())
+                .customerId(user1.getId())
+                .build();
+
+        favouritesRepository.saveAll(List.of(favourite1,favourite2,favourite3));
     }
 }

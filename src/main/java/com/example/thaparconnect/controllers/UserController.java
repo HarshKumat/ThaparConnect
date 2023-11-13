@@ -21,7 +21,7 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
     @Autowired
-    ItemsRepository ItemsRepository;
+    ItemsRepository itemsRepository;
 
     @Autowired
     UserService userService;
@@ -45,27 +45,31 @@ public class UserController {
 
     @GetMapping("/items")
     public List<Items> findAllItems() {
-        return ItemsRepository.findAll();
+        return itemsRepository.findAll();
     }
-
-
+    @GetMapping("/dets/{name}")
+    public Items findByName(@PathVariable("name") String name) { return  itemsRepository.findByName(name);}
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestBody User loginRequest){
         return userService.login(loginRequest);
     }
-/*
-    @GetMapping("/user/{email}")
-    public ResponseEntity<User> getUserByEmail(@PathVariable("email") String email){
-        User user = (User) userRepository.findByEmail(email);
-        if(user!=null) {
-            return ResponseEntity.ok(user);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @PostMapping("/register")
+    public ResponseEntity<Map<String, String>> register(@RequestBody User registrationRequest){
+        return userService.registerUser(registrationRequest);
     }
-*/
+
     @GetMapping("/user/{email}")
     public List<User> findByEmail(@PathVariable("email") String email) { return userRepository.findByEmail(email);}
 
+    @GetMapping("/user/{email}/favourites")
+    public List<Items> getFavourites(@PathVariable("email") String email){
+        return itemsRepository.findAllFavouriteItemsForUserWithEmail(email);
+    }
+
+    @GetMapping("/user/{email}/items")
+    public List<Items> getListedItems(@PathVariable("email") String email){
+        int customerId = userRepository.findAllByEmail(email).getId();
+        return itemsRepository.findAllById(customerId);
+    }
 }

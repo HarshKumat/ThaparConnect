@@ -18,8 +18,6 @@ public class Favourites {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private UUID customerId;
-    private UUID itemId;
-    @Enumerated(EnumType.STRING)
-    private ItemStatus status; //transaction initiated, transc finalised
+    private int customerId;
+    private int itemId;
 }

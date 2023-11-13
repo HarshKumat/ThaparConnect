@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -51,6 +50,14 @@ public class UserService {
         return ResponseEntity.ok(response);
     }
 
+    public ResponseEntity<Map<String, String>> registerUser(User user) {
+        Map<String, String> response = new HashMap<>();
+
+        userRepository.save(user);
+
+        response.put("message", "Registration successful");
+        return ResponseEntity.ok(response);
+    }
 
 
 }
