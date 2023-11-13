@@ -11,6 +11,7 @@ body {
   display: flex;
   justify-content: center;
   background-color: #03363c;
+  height: 900px;
 }
 
 #box {
@@ -27,7 +28,7 @@ body {
   justify-content: center;
   margin-top: 5%;
   width: 690px;
-  height: 590px;
+  height: 730px;
   background-color: white;
   border-radius: 5px;
   padding-left: 10px;
