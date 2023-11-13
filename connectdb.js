@@ -105,7 +105,49 @@ fetch(person)
     personDetails.className = 'display';
     personDetails.innerHTML = `
       <h4>First name: ${data[0].firstName}</h4><br>
+      <h4>Last Name: ${data[0].lastName}</h4><br>
       <h4>Email: ${data[0].email}</h4><br>
+      <h4>Hostel: ${data[0].hostel}</h4><br>
     `;
   })
   .catch(error => console.error('Error fetching data: ', error));
+
+  //to save new user info
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const registrationForm = document.forms.loginr; 
+
+    registrationForm.addEventListener('submit', async (event) => {
+        event.preventDefault(); 
+
+        const formData = new FormData(event.target);
+        const registrationData = {};
+        formData.forEach((value, key) => {
+            registrationData[key] = value;
+        });
+
+        const registerUrl = `http://localhost:8080/register`;
+        try {
+            const response = await fetch(registerUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(registrationData),
+            });
+
+            if (response.ok) {
+                alert('Registration done! Please login.');
+                window.location.href = 'login.html'; 
+            } else {
+               
+                const errorMessage = await response.text();
+                alert(`Registration failed: ${errorMessage}`);
+            }
+        } catch (error) {
+            console.error('Error during registration:', error);
+        }
+    });
+});
+
+
