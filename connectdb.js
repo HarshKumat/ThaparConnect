@@ -198,3 +198,32 @@ document.addEventListener('DOMContentLoaded',async()=>{
     
 
 });
+
+
+// to show user listed items
+document.addEventListener('DOMContentLoaded',async()=>{
+    const em = sessionStorage.getItem('userEmail');
+    const li = `http://localhost:8080/user/${em}/items`;
+
+    fetch(li)
+    .then(response => response.json())
+    .then(data => {
+        data.forEach(item => {
+          const l = document.getElementById('listedItems');
+            const productCard = document.createElement('div');
+            productCard.className = 'product';
+            productCard.innerHTML = `
+                <h2>${item.name}</h2>
+                <p>Description: ${item.description}</p>
+                <p>Price:Rs ${item.price}</p>
+            `;
+            l.appendChild(productCard);
+  
+  
+        });
+    })
+    .catch(error => console.error('Error fetching data: ', error));
+
+    
+
+});
