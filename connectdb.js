@@ -9,6 +9,7 @@ const apiUrl = 'http://localhost:8080/items';
   .then(data => {
       // Process the data and create HTML elements to display the products
       data.forEach(product => {
+        const l = document.getElementById('list1');
           const productCard = document.createElement('div');
           productCard.className = 'product';
           productCard.innerHTML = `
@@ -16,7 +17,7 @@ const apiUrl = 'http://localhost:8080/items';
               <p>Description: ${product.description}</p>
               <p>Price:Rs ${product.price}</p>
           `;
-          list1.appendChild(productCard);
+          l.appendChild(productCard);
 
 
       });
@@ -78,11 +79,8 @@ fetch(apiUrl3)
                 console.log('login done');
                 const e = loginForm.elements.email.value;
                 sessionStorage.setItem('userEmail',e)
-                //console.log(userEmail);
-                window.location.href = 'main.html'; // Redirect to the dashboard page
+                window.location.href = 'main.html'; 
             } else {
-                // Show an error message (e.g., incorrect username or password)
-                // You can display the error message on the page as needed
                 const errorMessage = await response.text();
                 alert(`Login failed: ${errorMessage}`);
             }
@@ -91,6 +89,8 @@ fetch(apiUrl3)
         }
     });
 });
+
+//to show user info
 
 const email2 = sessionStorage.getItem('userEmail');
 //const email = 'green.ranger@gmail.com'; // Retrieve email from the session storage
@@ -109,6 +109,9 @@ fetch(person)
       <h4>Email: ${data[0].email}</h4><br>
       <h4>Hostel: ${data[0].hostel}</h4><br>
     `;
+    const c = data[0].id;
+    sessionStorage.setItem('cid',c);
+    //console.log(sessionStorage.getItem('cid'));
   })
   .catch(error => console.error('Error fetching data: ', error));
 
@@ -150,4 +153,50 @@ fetch(person)
     });
 });
 
+//show user favourites
+document.addEventListener('DOMContentLoaded',async()=>{
+    const em = sessionStorage.getItem('userEmail');
+    const fav = `http://localhost:8080/user/${em}/favourites`;
 
+    try {
+        const response = await fetch(fav, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            const favoritesContainer = document.getElementById('cart'); // Replace with your container ID
+
+            data.forEach(favourite => {
+                // Create HTML elements to display the favorite items
+                const favoriteItem = document.createElement('div');
+                favoriteItem.className = 'cart-info';
+                const itemName = document.createElement('p');
+                itemName.textContent = `Item: ${favourite.name}`; // Replace with the property name for item name
+
+                const itemDescription = document.createElement('p');
+                itemDescription.textContent = `Description: ${favourite.description}`;
+
+                const itemPrice = document.createElement('p');
+                itemPrice.textContent = `Description: ${favourite.price}`; // Replace with the property name for item description
+
+                // Append the item name and description to the favoriteItem element
+                favoriteItem.appendChild(itemName);
+                favoriteItem.appendChild(itemDescription);
+
+                favoritesContainer.appendChild(favoriteItem);
+            });
+        } else {
+            const errorMessage = await response.text();
+            console.error(`Error fetching user favorites: ${errorMessage}`);
+        }
+    } catch (error) {
+        console.error('Error fetching user favorites:', error);
+    }
+
+    
+
+})
