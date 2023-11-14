@@ -168,22 +168,20 @@ document.addEventListener('DOMContentLoaded',async()=>{
 
         if (response.ok) {
             const data = await response.json();
-            const favoritesContainer = document.getElementById('cart'); // Replace with your container ID
+            const favoritesContainer = document.getElementById('cart');
 
             data.forEach(favourite => {
-                // Create HTML elements to display the favorite items
                 const favoriteItem = document.createElement('div');
                 favoriteItem.className = 'cart-info';
                 const itemName = document.createElement('p');
-                itemName.textContent = `Item: ${favourite.name}`; // Replace with the property name for item name
+                itemName.textContent = `Item: ${favourite.name}`;
 
                 const itemDescription = document.createElement('p');
                 itemDescription.textContent = `Description: ${favourite.description}`;
 
                 const itemPrice = document.createElement('p');
-                itemPrice.textContent = `Description: ${favourite.price}`; // Replace with the property name for item description
+                itemPrice.textContent = `Description: ${favourite.price}`; 
 
-                // Append the item name and description to the favoriteItem element
                 favoriteItem.appendChild(itemName);
                 favoriteItem.appendChild(itemDescription);
 
@@ -199,4 +197,4 @@ document.addEventListener('DOMContentLoaded',async()=>{
 
     
 
-})
+});
