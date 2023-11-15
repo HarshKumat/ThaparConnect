@@ -104,10 +104,10 @@ fetch(person)
     const personDetails = document.getElementById('personDetails');
     personDetails.className = 'display';
     personDetails.innerHTML = `
-      <h4>First name: ${data[0].firstName}</h4><br>
-      <h4>Last Name: ${data[0].lastName}</h4><br>
-      <h4>Email: ${data[0].email}</h4><br>
-      <h4>Hostel: ${data[0].hostel}</h4><br>
+      <h4>First name: ${data[0].firstName}</h4>
+      <h4>Last Name: ${data[0].lastName}</h4>
+      <h4>Email: ${data[0].email}</h4>
+      <h4>Hostel: ${data[0].hostel}</h4>
     `;
     const c = data[0].id;
     sessionStorage.setItem('cid',c);

@@ -15,7 +15,7 @@
   <link rel="icon" href="./images/olxbrowserlogo.jpg">
   <!-- Load an icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <title>OLX-Buy and Sell for free anywhere</title>
+  <title>Thapar Connect</title>
   <style>
     body {
         font-family: Arial, sans-serif;
@@ -68,6 +68,7 @@
     }
 
     #productList{}
+    
     #list1{
       padding: 10px;
       margin: 10px;
@@ -78,17 +79,32 @@
         background-color: #fff;
         border: 1px solid #ddd;
         border-radius: 5px;
+        display: inline-table;
         padding: 10px;
-        margin: 35%;
-        display: inline-block;
-        width: 50%;
-        height: 500px;
+        width: auto;
+        height: auto;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        position: relative;
+        left: 100px;
+        margin-bottom: 20px;
     }
     #form1{
         margin: 5%;
     }
   
+    #listedItems
+    {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        display: inline-table;
+        padding: 10px;
+        width: auto;
+        height: auto;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        position: relative;
+        left: 100px;
+    }
 </style>
 
 
@@ -100,7 +116,7 @@
 <div class="sidebar">
   <a href="./main.html"><i class="fa fa-fw fa-home"></i> Home</a>
   <a href="acc.html"><i class="fa fa-fw fa-wrench"></i> My Account</a>
-  <a href="#clients"><i class="fa fa-fw fa-user"></i> Favourites</a>
+  <a href="fav.html"><i class="fa fa-fw fa-user"></i> Favourites</a>
   <a href="login.html"><i class="fa fa-fw fa-envelope"></i> Sign out</a>
 </div>
 
@@ -146,9 +162,9 @@
 
     </div>
   </nav>
-  <h2>Your acc details</h2>
+  <h2><b>Your Account</b></h2>
   <div id="personDetails"></div>
-  <h2>Your listed items</h2>
+  <h2><b>Your listed items</b></h2>
   <div id="listedItems"></div>
     <!--
     <div id="modifyDetails">
