@@ -169,6 +169,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
         if (response.ok) {
             const data = await response.json();
             const favoritesContainer = document.getElementById('cart');
+            i=1;
 
             data.forEach(favourite => {
                 const favoriteItem = document.createElement('div');
@@ -193,10 +194,13 @@ document.addEventListener('DOMContentLoaded',async()=>{
                 c1 = row.insertCell(0);
                 c2 = row.insertCell(1);
                 c3 = row.insertCell(2);
+                c4 = row.insertCell(3);
 
-                c1.innerHTML = favourite.name;
-                c2.innerHTML = favourite.description;
-                c3.innerHTML = favourite.price;
+                c1.innerHTML = i;
+                c2.innerHTML = favourite.name;
+                c3.innerHTML = favourite.description;
+                c4.innerHTML = favourite.price;
+                i = i+1;
             });
         } else {
             const errorMessage = await response.text();
