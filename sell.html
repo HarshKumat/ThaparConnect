@@ -321,12 +321,13 @@
     <div class="ads">
       <div class="small-container cart-page">
 
+      <form name="postadd" action="" method="post">
         <div class="ROW">
           <div class="col1">
             <p>Product Title</p>
           </div>
           <div class="col2 ">
-            <input type="text" name="" id="productName" placeholder="Enter Product ">
+            <input class="form-control" type="text" name="" placeholder="Product name" required="">
           </div>
         </div>
         <div class="ROW">
@@ -334,7 +335,7 @@
             <p>Price</p>
           </div>
           <div class="col2 ">
-            <input type="number" name="" id="price" placeholder="Enter price in Rupees">
+            <input class="form-control" type="number" name="" id="price" placeholder="Enter price in Rupees" required="">
           </div>
         </div>
         <div class="ROW">
@@ -342,7 +343,7 @@
             <p>Location</p>
           </div>
           <div class="col2 ">
-            <input type="" name="" id="Location" placeholder="Enter Address Here">
+            <input class="form-control" type="text" name="" id="Location" placeholder="Enter Address Here" required="">
         </div>
     </div>
     <div class="ROW">
@@ -350,7 +351,7 @@
         <p class="postDes"> Product Details</p>
       </div>
       <div class="col4 ">
-        <textarea name="" id="productDetail" placeholder="Enter Details"></textarea>
+        <textarea class="form-control" name="" id="productDetail" placeholder="Enter Details" required=""></textarea>
       </div>
     </div>
     <div class="ROW">
@@ -363,13 +364,11 @@
           accept="image/*">
       </div>
     </div>
-    <div class="postButton" onclick="thanku()" >
-      Post
-    </div>
-  </div>
+    <input class="postButton" type="submit" name="post" value="Post">
+  </form>
 </div>
 </div>
-
+</div>
 
   <div class="footer2 container-fluid">
     <div class="container">

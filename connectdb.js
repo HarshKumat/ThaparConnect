@@ -242,3 +242,40 @@ document.addEventListener('DOMContentLoaded',async()=>{
     
 
 });
+
+//to post a new add
+document.addEventListener('DOMContentLoaded', () => {
+    const postad = document.forms.postadd; 
+
+   postad.addEventListener('post', async (event) => {
+        event.preventDefault(); 
+
+        const formData = new FormData(event.target);
+        const postData = {};
+        formData.forEach((value, key) => {
+            postData[key] = value;
+        });
+
+        const postUrl = `http://localhost:8080/posts`;
+        try {
+            const response = await fetch(postUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(postData),
+            });
+
+            if (response.ok) {
+                alert('Product Added!');
+                window.location.href = 'main.html'; 
+            } else {
+               
+                const errorMessage = await response.text();
+                alert(`Could not add product: ${errorMessage}`);
+            }
+        } catch (error) {
+            console.error('Error during posting add:', error);
+        }
+    });
+});
