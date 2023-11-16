@@ -180,12 +180,23 @@ document.addEventListener('DOMContentLoaded',async()=>{
                 itemDescription.textContent = `Description: ${favourite.description}`;
 
                 const itemPrice = document.createElement('p');
-                itemPrice.textContent = `Description: ${favourite.price}`; 
+                itemPrice.textContent = `Price: ${favourite.price}`; 
 
-                favoriteItem.appendChild(itemName);
-                favoriteItem.appendChild(itemDescription);
+                //favoriteItem.appendChild(itemName);
+                //favoriteItem.appendChild(itemDescription);
+                //favoriteItem.appendChild(itemPrice);
 
-                favoritesContainer.appendChild(favoriteItem);
+                //favoritesContainer.appendChild(favoriteItem);
+
+                table = document.getElementById("favtable");
+                row = table.insertRow(-1);
+                c1 = row.insertCell(0);
+                c2 = row.insertCell(1);
+                c3 = row.insertCell(2);
+
+                c1.innerHTML = favourite.name;
+                c2.innerHTML = favourite.description;
+                c3.innerHTML = favourite.price;
             });
         } else {
             const errorMessage = await response.text();

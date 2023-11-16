@@ -20,7 +20,7 @@
         font-family: Arial, sans-serif;
         background-color: #f5f5f5;
         margin:0;
-        margin-left: 200px;
+        margin-left: 160px;
         padding: 0;
     }
 
@@ -219,7 +219,7 @@ td:last-child {
 <!-- ---------cart items details-------- -->
 <div class="account-page">
     <div class="small-container cart-page">
-      <table>
+      <!--<table>
         <tr>
           <th>Product</th>
 
@@ -270,14 +270,23 @@ td:last-child {
 
           <td>₹300.00</td>
         </tr>
-      </table>
+      </table>-->
+
+      <table id="favtable">
+        <thead>
+           <th> Item </th>
+           <th> Description </th>
+           <th> Price </th>
+        </thead>
+          <div id="cart">
+            <!-- Cart items will be displayed here -->
+          </div>
+      
+      
       <div class="total-price">
-        <div id="cart">
-          <!-- Cart items will be displayed here -->
-        </div>
-        <div id="total-price">
+      <div id="total-price">
           Total Price: ₹<span id="total-amount">0.00</span>
-        </div>
+      </div>
         <!--
         <table>
           <tr>
