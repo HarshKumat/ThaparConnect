@@ -68,7 +68,7 @@ public class Bootstrap implements CommandLineRunner {
                 .description("only a year old")
                 .itemCategory(ItemCategory.electronics)
                 .price(3500L)
-                .customerId(user1.getId())
+                .customerId(user4.getId())
                 .status(ItemStatus.LISTED)
                 .build();
         Items item2 = Items.builder()
@@ -76,7 +76,7 @@ public class Bootstrap implements CommandLineRunner {
                 .description("good for cooking maggi")
                 .itemCategory(ItemCategory.electronics)
                 .price(1000L)
-                .customerId(user3.getId())
+                .customerId(user4.getId())
                 .status(ItemStatus.PROCESSING)
                 .build();
         Items item3 = Items.builder()

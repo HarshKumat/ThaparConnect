@@ -70,6 +70,6 @@ public class UserController {
     @GetMapping("/user/{email}/items")
     public List<Items> getListedItems(@PathVariable("email") String email){
         int customerId = userRepository.findAllByEmail(email).getId();
-        return itemsRepository.findAllById(customerId);
+        return itemsRepository.findAllByCustomerId(customerId);
     }
 }

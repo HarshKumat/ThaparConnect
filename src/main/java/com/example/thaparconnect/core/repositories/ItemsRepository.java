@@ -18,6 +18,6 @@ public interface ItemsRepository extends JpaRepository<Items, Integer> {
     @Query(value = "select * from user_items where id in (select item_id from user_favourites where customer_id = (SELECT id FROM PERSON where email= ?1))", nativeQuery = true)
     List<Items> findAllFavouriteItemsForUserWithEmail(String email);
 
-    List<Items> findAllById(int customerId);
+    List<Items> findAllByCustomerId(int customerId);
 }
 
