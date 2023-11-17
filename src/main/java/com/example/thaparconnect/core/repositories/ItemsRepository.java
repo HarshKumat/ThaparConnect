@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Repository
 public interface ItemsRepository extends JpaRepository<Items, Integer> {
-    Items findByName(String name);
+    List<Items> findAllByName(String name);
     Items save(Items item);
     void deleteByCustomerId(int customerId);
 

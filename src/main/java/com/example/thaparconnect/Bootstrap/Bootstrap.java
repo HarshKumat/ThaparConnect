@@ -88,7 +88,15 @@ public class Bootstrap implements CommandLineRunner {
                 .customerId(user2.getId())
                 .status(ItemStatus.LISTED)
                 .build();
-        ItemsRepository.saveAll(List.of(item1,item2,item3));
+        Items item4 = Items.builder()
+                .name("cooler")
+                .description("blue color")
+                .itemCategory(ItemCategory.electronics)
+                .price(3400L)
+                .customerId(user2.getId())
+                .status(ItemStatus.LISTED)
+                .build();
+        ItemsRepository.saveAll(List.of(item1,item2,item3,item4));
 
         Favourites favourite1 = Favourites.builder()
                 .itemId(item1.getId())

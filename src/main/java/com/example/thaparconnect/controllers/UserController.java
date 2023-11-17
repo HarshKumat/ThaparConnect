@@ -51,8 +51,8 @@ public class UserController {
     public List<Items> findAllItems() {
         return itemsRepository.findAll();
     }
-    @GetMapping("/dets/{name}")
-    public Items findByName(@PathVariable("name") String name) { return  itemsRepository.findByName(name);}
+    @GetMapping("/dets")
+    public List<Items> findAllByName(@RequestParam("name") String name) { return  itemsRepository.findAllByName(name);}
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestBody User loginRequest){
