@@ -1,5 +1,6 @@
 package com.example.thaparconnect.Bootstrap;
 
+import com.example.thaparconnect.core.entities.Chat;
 import com.example.thaparconnect.core.entities.Favourites;
 import com.example.thaparconnect.core.entities.Items;
 import com.example.thaparconnect.core.entities.User;
@@ -105,5 +106,6 @@ public class Bootstrap implements CommandLineRunner {
                 .build();
 
         favouritesRepository.saveAll(List.of(favourite1,favourite2,favourite3));
+
     }
 }
