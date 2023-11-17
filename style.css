@@ -1039,6 +1039,7 @@ td:last-child {
   padding-left: 3%;
   padding-bottom: 1%;
   padding-top: 0.5%;
+  resize: none;
 }
 
 .col4 input {
@@ -1051,6 +1052,13 @@ td:last-child {
   padding-left: 3%;
   padding-bottom: 1%;
   padding-top: 0.5%;
+}
+
+.col5 {
+  border: 2px solid #002f34;
+  border-radius: 5px;
+  width: 100% !important;
+  height: 50px;
 }
 
 .PostImage {
@@ -1122,6 +1130,14 @@ td:last-child {
 .ads {
   width: 75%;
   /* Make sure the form takes the full width of the container */
+}
+
+.col5 input{
+  height: auto;
+  width: auto;
+  border-radius: 0px;
+  background-color: white;
+  margin: 7px;
 }
 
 /* Style the sidebar - fixed full height */
