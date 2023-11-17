@@ -281,3 +281,116 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+//to show specific item
+document.addEventListener('DOMContentLoaded', async () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const itemName = urlParams.get('name');
+
+    const dets = `http://localhost:8080/dets/${itemName}`; 
+
+    try {
+        const response = await fetch(dets);
+        if (response.ok) {
+            const item = await response.json();
+            const itemDetailsContainer = document.getElementById('spec');
+            itemDetailsContainer.innerHTML = `
+                <h2>${item.name}</h2>
+                <p>Description: ${item.description}</p>
+                <p>Price: Rs ${item.price}</p>
+                <!-- Add other item details here -->
+            `;
+            const ii = item.id;
+            sessionStorage.setItem('itemId',ii);
+        } else {
+            console.error('Error fetching item details');
+        }
+    } catch (error) {
+        console.error('Error fetching item details:', error);
+    }
+});
+
+
+//chat
+document.getElementById('openChatBtn').addEventListener('click', function() {
+    document.getElementById('chatPopup').style.display = 'block';
+
+});
+//to send message
+document.getElementById('chatForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    const messageI = document.getElementById('messageInput');
+    const message = messageI.value;
+    const userId = sessionStorage.getItem('cid');
+    const it = sessionStorage.getItem('itemId');
+
+    const data ={
+        message: message,
+        userId : userId,
+        itemId : it
+    };
+    const dis = `http://localhost:8080/savemsg`;
+    try {
+        const response = await fetch(dis, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        messageI.value='';
+    } catch (error) {
+        console.error('There has been a problem with your fetch operation:', error);
+    }
+
+});
+
+//show previosu messages
+document.getElementById('openChatBtn').addEventListener('click', async function() {
+    document.getElementById('chatPopup').style.display = 'block';
+
+    try {
+        const userId = sessionStorage.getItem('cid'); 
+        const itemId = sessionStorage.getItem('itemId');
+
+        const chatHistoryUrl = `http://localhost:8080/history?userId=${userId}&itemId=${itemId}`;
+        const response = await fetch(chatHistoryUrl);
+        
+        if (response.ok) {
+            const chatHistory = await response.json();
+            renderChatHistory(chatHistory);
+        } else {
+            throw new Error('Failed to fetch chat history');
+        }
+    } catch (error) {
+        console.error('Error fetching chat history:', error);
+    }
+});
+
+function renderChatHistory(chatHistory) {
+    const chatContainer = document.getElementById('chatContainer');
+
+    chatContainer.innerHTML = '';
+
+    chatHistory.forEach(message => {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message');
+    
+        const messageContent = document.createElement('p');
+        messageContent.textContent = message.message; 
+        
+        const userElement = document.createElement('p');
+        userElement.textContent = `User ID: ${message.customerId}`; 
+
+        const timestampElement = document.createElement('p');
+        timestampElement.textContent = `Timestamp: ${message.createdAt}`; 
+
+        messageElement.appendChild(messageContent);
+        messageElement.appendChild(userElement);
+        messageElement.appendChild(timestampElement);
+
+        chatContainer.appendChild(messageElement);
+    });
+}
