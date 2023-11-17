@@ -62,6 +62,10 @@ public class UserController {
     public ResponseEntity<Map<String, String>> register(@RequestBody User registrationRequest){
         return userService.registerUser(registrationRequest);
     }
+    @PostMapping("/posts")
+    public ResponseEntity<Map<String, String>> register(@RequestBody Items postRequest){
+        return userService.postItem(postRequest);
+    }
 
     @GetMapping("/user/{email}")
     public List<User> findByEmail(@PathVariable("email") String email) { return userRepository.findByEmail(email);}

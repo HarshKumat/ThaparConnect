@@ -1,7 +1,9 @@
 package com.example.thaparconnect.Service;
 
+import com.example.thaparconnect.core.entities.Items;
 import com.example.thaparconnect.core.entities.User;
 import com.example.thaparconnect.core.enums.HostelType;
+import com.example.thaparconnect.core.repositories.ItemsRepository;
 import com.example.thaparconnect.core.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,8 @@ public class UserService {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    ItemsRepository itemsRepository;
 
     public Boolean isHotelOverCrowded(HostelType hostel){
         Integer studentsInHostel = userRepository.countByHostelIn(Collections.singletonList(hostel));
@@ -54,6 +58,15 @@ public class UserService {
         Map<String, String> response = new HashMap<>();
 
         userRepository.save(user);
+
+        response.put("message", "Registration successful");
+        return ResponseEntity.ok(response);
+    }
+
+    public ResponseEntity<Map<String, String>> postItem(Items item) {
+        Map<String, String> response = new HashMap<>();
+
+        itemsRepository.save(item);
 
         response.put("message", "Registration successful");
         return ResponseEntity.ok(response);
