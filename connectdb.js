@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
 document.addEventListener('DOMContentLoaded', () => {
     const postad = document.forms.postadd; 
 
-   postad.addEventListener('post', async (event) => {
+   postad.addEventListener('submit', async (event) => {
         event.preventDefault(); 
 
         const formData = new FormData(event.target);
@@ -277,6 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert(`Could not add product: ${errorMessage}`);
             }
         } catch (error) {
+            alert(`Could not add product`);
             console.error('Error during posting add:', error);
         }
     });
