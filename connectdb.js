@@ -22,7 +22,7 @@ a.addEventListener('click', async () => {
         console.error('Error fetching search results:', error);
     }
     });
-    function displaySearchResults(results) {
+function displaySearchResults(results) {
         const searchResultsContainer = document.getElementById('list1');
         searchResultsContainer.innerHTML = '';
     
@@ -38,10 +38,10 @@ a.addEventListener('click', async () => {
               `;
               searchResultsContainer.appendChild(productCard);
           });
-    }
+}
 
     //to show items
-    const apiUrl = `http://localhost:8080/items`;
+const apiUrl = `http://localhost:8080/items`;
   fetch(apiUrl)
   .then(response => response.json())
   .then(data => {
@@ -100,33 +100,7 @@ fetch(apiUrl3)
 
 
 
-//to show specific item
-document.addEventListener('DOMContentLoaded', async () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const itemName = urlParams.get('name');
 
-    const dets = `http://localhost:8080/dets/${itemName}`; 
-
-    try {
-        const response = await fetch(dets);
-        if (response.ok) {
-            const item = await response.json();
-            const itemDetailsContainer = document.getElementById('spec');
-            itemDetailsContainer.innerHTML = `
-                <h2>${item.name}</h2>
-                <p>Description: ${item.description}</p>
-                <p>Price: Rs ${item.price}</p>
-                <!-- Add other item details here -->
-            `;
-            const ii = item.id;
-            sessionStorage.setItem('itemId',ii);
-        } else {
-            console.error('Error fetching item details');
-        }
-    } catch (error) {
-        console.error('Error fetching item details:', error);
-    }
-});
 
 
 
@@ -173,4 +147,6 @@ function displaySearchResults(results) {
       });
 }
 */
+
+
 
