@@ -10,7 +10,7 @@ body {
 #bodylogin {
   display: flex;
   justify-content: center;
-  background-color: #ffa647;
+  background-color: #002f34;
   height: auto;
 }
 
@@ -47,7 +47,7 @@ body {
 }
 
 #heading h3 {
-  color: #d16b00;
+  color: #002f34;
   text-align: center;
   font-size: 35px !important;
   font-weight: bold !important;
@@ -55,7 +55,7 @@ body {
 }
 
 #heading p {
-  color: #d16b00;
+  color: #002f34;
   text-align: center;
   font-size: 15px;
   margin-top: -4%;
@@ -80,16 +80,16 @@ form .login1 {
 */
 
 .login1 input:hover {
-  border-color: #d16b00;
+  border-color: #002f34;
 }
 form .button{
 
   width: 500px;;
    height:30px;
   border-radius: 5px;
-  border-color: #d16b00;
+  border-color: #002f34;
   margin-top: 5%;
-  background-color: #d16b00;
+  background-color: #002f34;
   color: white;
   padding-top: 0.3vh !important;
 }
