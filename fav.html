@@ -341,7 +341,68 @@ td:last-child {
     </div>
   </div>
 
+  <script>
+    //show user favourites
+document.addEventListener('DOMContentLoaded',async()=>{
+    const em = sessionStorage.getItem('userEmail');
+    const fav = `http://localhost:8080/user/${em}/favourites`;
 
+    try {
+        const response = await fetch(fav, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            const favoritesContainer = document.getElementById('cart');
+            i=1;
+
+            data.forEach(favourite => {
+                const favoriteItem = document.createElement('div');
+                favoriteItem.className = 'cart-info';
+                const itemName = document.createElement('p');
+                itemName.textContent = `Item: ${favourite.name}`;
+
+                const itemDescription = document.createElement('p');
+                itemDescription.textContent = `Description: ${favourite.description}`;
+
+                const itemPrice = document.createElement('p');
+                itemPrice.textContent = `Price: ${favourite.price}`; 
+
+                //favoriteItem.appendChild(itemName);
+                //favoriteItem.appendChild(itemDescription);
+                //favoriteItem.appendChild(itemPrice);
+
+                //favoritesContainer.appendChild(favoriteItem);
+
+                table = document.getElementById("favtable");
+                row = table.insertRow(-1);
+                c1 = row.insertCell(0);
+                c2 = row.insertCell(1);
+                c3 = row.insertCell(2);
+                c4 = row.insertCell(3);
+
+                c1.innerHTML = i;
+                c2.innerHTML = favourite.name;
+                c3.innerHTML = favourite.description;
+                c4.innerHTML = favourite.price;
+                i = i+1;
+            });
+        } else {
+            const errorMessage = await response.text();
+            console.error(`Error fetching user favorites: ${errorMessage}`);
+        }
+    } catch (error) {
+        console.error('Error fetching user favorites:', error);
+    }
+
+    
+
+});
+  </script>
   <script src="main.js"></script>
   <script src="app.js"></script>
   <script src="connectdb.js"></script>

@@ -41,6 +41,46 @@
 
     </div>
   </div>
+  <script>
+      document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.forms.login1; // Assuming your form has the name "login1"
+    console.log("bbbb");
+    loginForm.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Prevent the default form submission
+
+        const email = loginForm.elements.email.value;
+        const password = loginForm.elements.password.value;
+        console.log('aaaa');
+
+        // Make an HTTP POST request to your Spring Boot backend
+        const apiUrl2 = `http://localhost:8080/login`; // Replace with your login endpoint
+        const requestBody = JSON.stringify({ email, password });
+
+        try {
+            const response = await fetch(apiUrl2, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: requestBody,
+            });
+
+            if (response.ok) {
+                // Successfully logged in
+                console.log('login done');
+                const e = loginForm.elements.email.value;
+                sessionStorage.setItem('userEmail',e)
+                window.location.href = 'main.html'; 
+            } else {
+                const errorMessage = await response.text();
+                alert(`Login failed: ${errorMessage}`);
+            }
+        } catch (error) {
+            console.error('Error during login:', error);
+        }
+    });
+});
+  </script>
     <script src="connectdb.js"></script>
 </body>
 

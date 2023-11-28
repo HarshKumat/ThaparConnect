@@ -41,6 +41,7 @@ a.addEventListener('click', async () => {
     }
 
     //to show items
+    const apiUrl = `http://localhost:8080/items`;
   fetch(apiUrl)
   .then(response => response.json())
   .then(data => {
@@ -87,68 +88,9 @@ fetch(apiUrl3)
 
   //to confirm login
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.forms.login1; // Assuming your form has the name "login1"
 
-    loginForm.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Prevent the default form submission
 
-        const email = loginForm.elements.email.value;
-        const password = loginForm.elements.password.value;
 
-        // Make an HTTP POST request to your Spring Boot backend
-        const apiUrl2 = 'http://localhost:8080/login'; // Replace with your login endpoint
-        const requestBody = JSON.stringify({ email, password });
-
-        try {
-            const response = await fetch(apiUrl2, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: requestBody,
-            });
-
-            if (response.ok) {
-                // Successfully logged in
-                console.log('login done');
-                const e = loginForm.elements.email.value;
-                sessionStorage.setItem('userEmail',e)
-                window.location.href = 'main.html'; 
-            } else {
-                const errorMessage = await response.text();
-                alert(`Login failed: ${errorMessage}`);
-            }
-        } catch (error) {
-            console.error('Error during login:', error);
-        }
-    });
-});
-
-//to show user info
-
-const email2 = sessionStorage.getItem('userEmail');
-//const email = 'green.ranger@gmail.com'; // Retrieve email from the session storage
-const person = `http://localhost:8080/user/${email2}`;
-
-fetch(person)
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-    // Process the data and create HTML elements to display the user information
-    const personDetails = document.getElementById('personDetails');
-    personDetails.className = 'display';
-    personDetails.innerHTML = `
-      <h4>First name: ${data[0].firstName}</h4>
-      <h4>Last Name: ${data[0].lastName}</h4>
-      <h4>Email: ${data[0].email}</h4>
-      <h4>Hostel: ${data[0].hostel}</h4>
-    `;
-    const c = data[0].id;
-    sessionStorage.setItem('cid',c);
-    //console.log(sessionStorage.getItem('cid'));
-  })
-  .catch(error => console.error('Error fetching data: ', error));
 
   //to save new user info
 
@@ -188,134 +130,12 @@ fetch(person)
     });
 });
 
-//show user favourites
-document.addEventListener('DOMContentLoaded',async()=>{
-    const em = sessionStorage.getItem('userEmail');
-    const fav = `http://localhost:8080/user/${em}/favourites`;
-
-    try {
-        const response = await fetch(fav, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            const favoritesContainer = document.getElementById('cart');
-            i=1;
-
-            data.forEach(favourite => {
-                const favoriteItem = document.createElement('div');
-                favoriteItem.className = 'cart-info';
-                const itemName = document.createElement('p');
-                itemName.textContent = `Item: ${favourite.name}`;
-
-                const itemDescription = document.createElement('p');
-                itemDescription.textContent = `Description: ${favourite.description}`;
-
-                const itemPrice = document.createElement('p');
-                itemPrice.textContent = `Price: ${favourite.price}`; 
-
-                //favoriteItem.appendChild(itemName);
-                //favoriteItem.appendChild(itemDescription);
-                //favoriteItem.appendChild(itemPrice);
-
-                //favoritesContainer.appendChild(favoriteItem);
-
-                table = document.getElementById("favtable");
-                row = table.insertRow(-1);
-                c1 = row.insertCell(0);
-                c2 = row.insertCell(1);
-                c3 = row.insertCell(2);
-                c4 = row.insertCell(3);
-
-                c1.innerHTML = i;
-                c2.innerHTML = favourite.name;
-                c3.innerHTML = favourite.description;
-                c4.innerHTML = favourite.price;
-                i = i+1;
-            });
-        } else {
-            const errorMessage = await response.text();
-            console.error(`Error fetching user favorites: ${errorMessage}`);
-        }
-    } catch (error) {
-        console.error('Error fetching user favorites:', error);
-    }
-
-    
-
-});
 
 
-// to show user listed items
-document.addEventListener('DOMContentLoaded',async()=>{
-    const em = sessionStorage.getItem('userEmail');
-    const li = `http://localhost:8080/user/${em}/items`;
 
-    fetch(li)
-    .then(response => response.json())
-    .then(data => {
-        data.forEach(item => {
-          const l = document.getElementById('listedItems');
-            const productCard = document.createElement('a');
-            productCard.href = `itemDetails.html?name=${encodeURIComponent(item.name)}`;
-            productCard.className = 'product';
-            productCard.innerHTML = `
-                <h2>${item.name}</h2>
-                <p>Description: ${item.description}</p>
-                <p>Price:Rs ${item.price}</p>
-            `;
-            l.appendChild(productCard);
-  
-  
-        });
-    })
-    .catch(error => console.error('Error fetching data: ', error));
 
-    
 
-});
 
-//to post a new add
-document.addEventListener('DOMContentLoaded', () => {
-    const postad = document.forms.postadd; 
-
-   postad.addEventListener('submit', async (event) => {
-        event.preventDefault(); 
-
-        const formData = new FormData(event.target);
-        const postData = {};
-        formData.forEach((value, key) => {
-            postData[key] = value;
-        });
-
-        const postUrl = `http://localhost:8080/posts`;
-        try {
-            const response = await fetch(postUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(postData),
-            });
-
-            if (response.ok) {
-                alert('Product Added!');
-                window.location.href = 'main.html'; 
-            } else {
-               
-                const errorMessage = await response.text();
-                alert(`Could not add product: ${errorMessage}`);
-            }
-        } catch (error) {
-            alert(`Could not add product`);
-            console.error('Error during posting add:', error);
-        }
-    });
-});
 //to show specific item
 document.addEventListener('DOMContentLoaded', async () => {
     const urlParams = new URLSearchParams(window.location.search);

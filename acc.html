@@ -151,62 +151,7 @@
   <div id="personDetails"></div>
   <h2><b>Your listed items</b></h2>
   <div id="listedItems"></div>
-    <!--
-    <div id="modifyDetails">
-        <form id ="form1">
-            <h4>Enter first name</h4>
-            <input placeholder="change first name" type="text"><br><br>
-            <h4>Enter last name</h4>
-            <input placeholder="change last name" type="text"><br><br>
-            <h4>Enter email</h4>
-            <input placeholder="change email" type="text"><br><br>
-            <h4>Enter email</h4>
-            <input placeholder="change email" type="text"><br><br>
-            <h4>Enter hostel type</h4>
-            <input placeholder="change hostel" type="text"><br><br>
-        </form>
-    </div>
--->
 
-  
-  <!--<div id="box">
-    <div id="heading">
-      <h3>WELCOME TO THAPAR CONNECT</h3><br><br>
-      <p>The trusted community of buyers and sellers.</p>
-    </div>
-    <div id="heading">
-        <h4>Name:</h4>
-        <h4>Email Id:</h4>
-        <h4>Location:</h4>
-        
-        
-
-    </div>
-  </div>-->
-
-  <!--
-  <div class="container">
-    <div class="product">
-        <img src="product1.jpg" alt="Product 1">
-        <h2>Product 1</h2>
-        <p>Description of Product 1. Price: $19.99</p>
-    </div>
-
-    <div class="product">
-        <img src="product2.jpg" alt="Product 2">
-        <h2>Product 2</h2>
-        <p>Description of Product 2. Price: $29.99</p>
-    </div>
-
-    <div class="product">
-        <img src="product3.jpg" alt="Product 3">
-        <h2>Product 3</h2>
-        <p>Description of Product 3. Price: $39.99</p>
-    </div>
-
-
-</div>
--->
 <br><br><br><br><br><br>
   <div class="footer2 container-fluid">
     <div class="container">
@@ -249,7 +194,63 @@
     </div>
   </div>
 
+  <script>
+    //to show user info
 
+const email2 = sessionStorage.getItem('userEmail');
+//const email = 'green.ranger@gmail.com'; // Retrieve email from the session storage
+const person = `http://localhost:8080/user/${email2}`;
+
+fetch(person)
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    // Process the data and create HTML elements to display the user information
+    const personDetails = document.getElementById('personDetails');
+    personDetails.className = 'display';
+    personDetails.innerHTML = `
+      <h4>First name: ${data[0].firstName}</h4>
+      <h4>Last Name: ${data[0].lastName}</h4>
+      <h4>Email: ${data[0].email}</h4>
+      <h4>Hostel: ${data[0].hostel}</h4>
+    `;
+    const c = data[0].id;
+    sessionStorage.setItem('cid',c);
+    //console.log(sessionStorage.getItem('cid'));
+  })
+  .catch(error => console.error('Error fetching data: ', error));
+
+
+
+   // to show user listed items
+document.addEventListener('DOMContentLoaded',async()=>{
+    const em = sessionStorage.getItem('userEmail');
+    const li = `http://localhost:8080/user/${em}/items`;
+
+    fetch(li)
+    .then(response => response.json())
+    .then(data => {
+        data.forEach(item => {
+          const l = document.getElementById('listedItems');
+            const productCard = document.createElement('a');
+            productCard.href = `itemDetails.html?name=${encodeURIComponent(item.name)}`;
+            productCard.className = 'product';
+            productCard.innerHTML = `
+                <h2>${item.name}</h2>
+                <p>Description: ${item.description}</p>
+                <p>Price:Rs ${item.price}</p>
+            `;
+            l.appendChild(productCard);
+  
+  
+        });
+    })
+    .catch(error => console.error('Error fetching data: ', error));
+
+    
+
+});
+  </script>
   <script src="main.js"></script>
   <script src="app.js"></script>
   <script src="connectdb.js"></script>
