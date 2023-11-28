@@ -10,15 +10,15 @@ body {
 #bodylogin {
   display: flex;
   justify-content: center;
-  background-color: #03363c;
-  height: 900px;
+  background-color: #ffa647;
+  height: auto;
 }
 
 #box {
   justify-content: center;
-  margin-top: 5%;
-  width: 690px;
-  height: 530px;
+  margin-top: 4%;
+  width: 720px;
+  height: 580px;
   background-color: white;
   border-radius: 5px;
   padding-left: 10px;
@@ -26,9 +26,10 @@ body {
 }
 #boxr {
   justify-content: center;
-  margin-top: 5%;
+  margin-top: 4%;
+  margin-bottom: 4%;
   width: 690px;
-  height: 730px;
+  height: 750px;
   background-color: white;
   border-radius: 5px;
   padding-left: 10px;
@@ -36,22 +37,25 @@ body {
 }
 
 #logoImg {
+  display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 30%;
-  height: 17%;
+  margin-top: 20px;
+  width: 126px;
+  height: 126px;
+  border-radius: 50%;
 }
 
 #heading h3 {
-  color: #033338d3;
+  color: #d16b00;
   text-align: center;
   font-size: 35px !important;
   font-weight: bold !important;
-  margin-top: 2%;
+  margin-top: 3%;
 }
 
 #heading p {
-  color: #033338d3;
+  color: #d16b00;
   text-align: center;
   font-size: 15px;
   margin-top: -4%;
@@ -76,15 +80,16 @@ form .login1 {
 */
 
 .login1 input:hover {
-  border-color: rgb(10, 131, 140);
+  border-color: #d16b00;
 }
 form .button{
 
   width: 500px;;
    height:30px;
   border-radius: 5px;
+  border-color: #d16b00;
   margin-top: 5%;
-  background-color: #033338d3;
+  background-color: #d16b00;
   color: white;
   padding-top: 0.3vh !important;
 }
