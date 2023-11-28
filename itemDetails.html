@@ -196,18 +196,22 @@
 
       });
     //to send message
-      document.getElementById('chatForm').addEventListener('submit', async function(event) {
+    console.log('llll');
+      document.getElementById('chatForm').addEventListener('submit', async(event)=>{
+        
           event.preventDefault();
           const messageI = document.getElementById('messageInput');
           const message = messageI.value;
           const userId = sessionStorage.getItem('cid');
-          const it = sessionStorage.getItem('itemId');
+          const itemId = sessionStorage.getItem('itemId');
+
 
           const data ={
               message: message,
-              customerId : userId,
-              itemId : userId
+              userId : userId,
+              itemId : itemId
           };
+          console.log(data);
           const dis = `http://localhost:8080/savemsg`;
           try {
               const response = await fetch(dis, {
@@ -237,6 +241,7 @@
         try {
             const userId = sessionStorage.getItem('cid'); 
             const itemId = sessionStorage.getItem('itemId');
+            
 
             const chatHistoryUrl = `http://localhost:8080/history?userId=${userId}&itemId=${itemId}`;
             const response = await fetch(chatHistoryUrl);
