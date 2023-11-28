@@ -92,43 +92,7 @@ fetch(apiUrl3)
 
 
 
-  //to save new user info
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const registrationForm = document.forms.loginr; 
-
-    registrationForm.addEventListener('submit', async (event) => {
-        event.preventDefault(); 
-
-        const formData = new FormData(event.target);
-        const registrationData = {};
-        formData.forEach((value, key) => {
-            registrationData[key] = value;
-        });
-
-        const registerUrl = `http://localhost:8080/register`;
-        try {
-            const response = await fetch(registerUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(registrationData),
-            });
-
-            if (response.ok) {
-                alert('Registration done! Please login.');
-                window.location.href = 'login.html'; 
-            } else {
-               
-                const errorMessage = await response.text();
-                alert(`Registration failed: ${errorMessage}`);
-            }
-        } catch (error) {
-            console.error('Error during registration:', error);
-        }
-    });
-});
 
 
 
@@ -165,90 +129,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 
-//chat
-document.getElementById('openChatBtn').addEventListener('click', function() {
-    document.getElementById('chatPopup').style.display = 'block';
 
-});
-//to send message
-document.getElementById('chatForm').addEventListener('submit', async function(event) {
-    event.preventDefault();
-    const messageI = document.getElementById('messageInput');
-    const message = messageI.value;
-    const userId = sessionStorage.getItem('cid');
-    const it = sessionStorage.getItem('itemId');
-
-    const data ={
-        message: message,
-        userId : userId,
-        itemId : it
-    };
-    const dis = `http://localhost:8080/savemsg`;
-    try {
-        const response = await fetch(dis, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        messageI.value='';
-    } catch (error) {
-        console.error('There has been a problem with your fetch operation:', error);
-    }
-
-});
-
-//show previosu messages
-document.getElementById('openChatBtn').addEventListener('click', async function() {
-    document.getElementById('chatPopup').style.display = 'block';
-
-    try {
-        const userId = sessionStorage.getItem('cid'); 
-        const itemId = sessionStorage.getItem('itemId');
-
-        const chatHistoryUrl = `http://localhost:8080/history?userId=${userId}&itemId=${itemId}`;
-        const response = await fetch(chatHistoryUrl);
-        
-        if (response.ok) {
-            const chatHistory = await response.json();
-            renderChatHistory(chatHistory);
-        } else {
-            throw new Error('Failed to fetch chat history');
-        }
-    } catch (error) {
-        console.error('Error fetching chat history:', error);
-    }
-});
-
-function renderChatHistory(chatHistory) {
-    const chatContainer = document.getElementById('chatContainer');
-
-    chatContainer.innerHTML = '';
-
-    chatHistory.forEach(message => {
-        const messageElement = document.createElement('div');
-        messageElement.classList.add('message');
-    
-        const messageContent = document.createElement('p');
-        messageContent.textContent = message.message; 
-        
-        const userElement = document.createElement('p');
-        userElement.textContent = `User ID: ${message.customerId}`; 
-
-        const timestampElement = document.createElement('p');
-        timestampElement.textContent = `Timestamp: ${message.createdAt}`; 
-
-        messageElement.appendChild(messageContent);
-        messageElement.appendChild(userElement);
-        messageElement.appendChild(timestampElement);
-
-        chatContainer.appendChild(messageElement);
-    });
-}
 
 /*
 //for searching item by name
