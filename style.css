@@ -37,24 +37,22 @@ body {
   display: flex;
 }
 
-.search_box i {
-  background-color: #002f34;
-  color: white;
-  border-radius: 0px 6px 6px 0px;
-  cursor: pointer;
-  height: 50px;
-  width: 175px;
-  padding: 36px 0px 0px 17px;
+.search3{
+  width: 100%;
+  position: relative;
+  display: flex;
 
 }
 
 .searchclass {
-  width: 300%;
-  height: 50px;
-  padding: 10px;
-  font-size: 16px;
-  border: 2px solid #002f34;
-  border-radius: 6px 0px 0px 6px;
+  width: 50%;
+  border: 3px solid #004D40;
+  border-right: none;
+  padding: 20px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #004D40;
 }
 .searchclass1 {
   width: 100%;
@@ -1143,7 +1141,7 @@ td:last-child {
 /* Style the sidebar - fixed full height */
 .sidebar {
   height: 100%;
-  width: 160px;
+  width: 180px;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -1181,3 +1179,14 @@ td:last-child {
 }
 
 /*---------Account Page----------*/
+#bs{
+  width: 40px;
+  height: 45px;
+  border: 1px solid #004D40;
+  background: #004D40;
+  text-align: center;
+  color: #00d9b5;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
