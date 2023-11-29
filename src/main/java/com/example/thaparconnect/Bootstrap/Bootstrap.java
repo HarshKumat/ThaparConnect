@@ -55,7 +55,7 @@ public class Bootstrap implements CommandLineRunner {
                 .type(UserType.USER)
                 .build();
         User user4 = User.builder()
-                .email("gkumar_24@thapar.rdu")
+                .email("gkumar_24@thapar.edu")
                 .password("gkumar123$")
                 .firstName("Girish")
                 .lastName("Kumar")
